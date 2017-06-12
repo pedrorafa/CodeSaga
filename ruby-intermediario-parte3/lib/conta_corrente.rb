@@ -1,0 +1,49 @@
+class ContaCorrente
+  
+  attr_accessor :titular, :limite, :saldo, :numero
+
+  def initialize(numero:, nome:, saldo:, limite:)
+    @numero = numero
+    @titular = cria_cliente(nome)
+    @saldo = saldo
+    @limite = limite
+  end
+
+  def cria_cliente(nome)
+    sobrenome = nome[nome.index(' ')+1,nome.length - nome.index(' ')]
+    nome = nome[0,nome.index(' ')]
+    cpf = "111.111.111-01"
+
+    Cliente.new(nome: nome,sobrenome: sobrenome,'111.111.111-01')
+  end
+
+  def atulizar
+    @saldo    
+  end
+
+  def sacar(valor)
+    return false if valor > (@saldo + @limite)
+    @saldo -= valor
+  end
+
+  def depositar(valor,taxa)
+    @saldo += valor - taxa
+  end
+
+  def no_limite?
+    @saldo < 0
+  end
+
+  def ==(other)
+    other.titular.nome_completo == titular.nome_completo &&
+      other.limite == limite &&
+      other.saldo == saldo &&
+      other.numero == numero
+  end
+
+  def transfere(conta_destino, valor_transferencia)
+    conta_destino.saldo += valor_transferencia
+    sacar(valor_transferencia)
+  end
+
+end

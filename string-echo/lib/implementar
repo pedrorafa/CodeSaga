@@ -1,0 +1,26 @@
+	def IsConta(pergunta)
+		pergunta.delete" ,."
+		i = 0
+		bool = nil
+		for i in i..pergunta.length-1
+			if  i + pergunta[i].to_i != pergunta[i]
+				return bool = false
+			end 
+		end
+		return bool = true
+	end
+
+ IsConta(pergunta)
+	
+			pergunta.delete" ,."
+			j=pergunta[0].to_i
+			resposta = j
+			i=0
+			
+			for i in i..pergunta.length-1
+				j += 1
+				if  j.to_s == pergunta[i]
+					resposta += ", #{j}"
+				end
+			end 
+			return pergunta +="..."
